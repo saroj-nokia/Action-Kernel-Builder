@@ -10,7 +10,7 @@ BINUTILS_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/
 
 BINUTILS_32_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
 
-KERNEL_SOURCE_URL="https://github.com/thecatvoid/android_kernel_motorola_guamp"
+KERNEL_SOURCE_URL="https://github.com/realme-kernel-opensource/realme_Q3s_Q3t_9-5G-Speed-AndroidS-kernel-source"
 
 ANYKERNEL_GIT="https://github.com/thecatvoid/AnyKernel3.git"
 
@@ -39,7 +39,7 @@ make_fun() {
 }
 
 # Make defconfig
-make_fun vendor/guamp_defconfig
+make_fun vendor/lahaina-gki_defconfig
 
 # Make kernel
 make_fun -j"$(nproc --all)" || make_fun -j1
