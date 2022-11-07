@@ -10,7 +10,7 @@ BINUTILS_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/
 
 BINUTILS_32_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
 
-KERNEL_SOURCE_URL="https://github.com/realme-kernel-opensource/realme_Q3s_Q3t_9-5G-Speed-AndroidS-kernel-source -b lahaina-gki-patch"
+KERNEL_SOURCE_URL="https://github.com/cd-Crypton/realme_Q3s-9SE_kernel -b lahaina-gki-patch"
 
 ANYKERNEL_GIT="https://github.com/thecatvoid/AnyKernel3.git"
 
