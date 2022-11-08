@@ -17,7 +17,7 @@ jobs:
     - name: Build Environment
       run: |
         git clone https://github.com/cd-Spidey/Random ./setting
-        cd setting
+        cd setting/setup/packages
         sudo bash build_env.sh
         sudo bash open_jdk.sh
 
