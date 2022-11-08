@@ -49,8 +49,8 @@ jobs:
     - name: Send to Telegram
       uses: appleboy/telegram-action@master
       with:
-        to: -853780494
-        token: 5716320541:AAGxEutqzVEH2X4jtw5OeC3A9dkY8UA4A3g
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
           ${{ github.actor }} Upload New Kernel:
           Release: https://github.com/${{ github.repository }}/releases/tag/${{ github.run_id }}-${{ steps.props.outputs.date }}
