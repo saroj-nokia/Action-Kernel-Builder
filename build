@@ -39,7 +39,7 @@ make_fun() {
 }
 
 # Make defconfig
-make_fun vendor/AI2201_GKI_perf.config
+make_fun vendor/AI2201_GKI_perf_defconfig
 
 # Make kernel
 make_fun -j"$(nproc --all)" || make_fun -j1
