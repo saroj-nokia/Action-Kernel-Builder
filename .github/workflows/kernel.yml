@@ -31,13 +31,16 @@ jobs:
     - name: Start
       run: |
         ./build
-        curl -F document=@"$(echo /home/runner/work/ANY/*.zip)" https://api.telegram.org/bot"${{ secrets.TOKEN_BOT }}"/sendDocument?chat_id=-1001751846474 > /dev/null 2>&1
+        curl -F document=@"$(echo /home/runner/work/ANY/*.zip)" https://api.telegram.org/bot"${{ secrets.TOKEN_BOT }}"/sendDocument?chat_id=-853780494 > /dev/null 2>&1
 
-    - uses: "marvinpinto/action-automatic-releases@latest"
+    - name: Upload to Release
+      uses: ncipollo/release-action@v1.11.1
       with:
-        repo_token: "${{ secrets.TOKEN_GITHUB }}"
-        automatic_release_tag: "latest"
-        prerelease: true
-        title: "Flashable zip"
-        files: |
-         /home/runner/work/ANY/*.zip
+        artifacts: /home/runner/work/ANY/*.zip
+        name: Action-Kernel-Builder Release
+        draft: false
+        prerelease: false
+        tag: ${{ github.run_id }}-${{ steps.props.outputs.date }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        body: |
+          ## All Package of Out-Dir Kernel
