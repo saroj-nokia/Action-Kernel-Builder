@@ -27,6 +27,11 @@ jobs:
         git clone https://android.googlesource.com/tools/repo -b v2.29 ~/bin
         chmod a+x ~/bin/repo
         sudo ln -sf ~/bin/repo /usr/bin/repo
+
+    - name: Set Properties # Output will be use in final name of recovery.
+      id: props
+      run: |
+        echo "date=$(date +%Y%m%d)" >> $GITHUB_OUTPUT
       
     - name: Start
       run: |
