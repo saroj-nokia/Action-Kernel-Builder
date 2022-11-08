@@ -49,7 +49,8 @@ cd "${WORK}" || exit
 [ ! -d ANY ] && git clone --depth=1 "${ANYKERNEL_GIT}" ANY
 cd ANY || exit 1
 rm -rf ./*Image* ./*.zip
-cp "${KERNEL_SRC}/out/arch/arm64/boot/Image.gz-dtb" ./
+cp "${KERNEL_SRC}/out/arch/arm64/boot/kernel" ./
+cp "${KERNEL_SRC}/out/arch/arm64/boot/boot.img" ./
 dates="$(date +%F+%T%z)"
 zip -r9 "${dates}.zip" ./* -x .git README.md ./*placeholder
 curl -T "${dates}.zip" temp.sh
