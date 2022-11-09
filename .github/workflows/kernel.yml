@@ -22,7 +22,9 @@ jobs:
     - name: Release
       uses: ncipollo/release-action@v1.11.1
       with:
-        artifacts: /home/runner/work/ANY/*.zip
+        artifacts: |
+          /home/runner/work/ANY/*.zip
+          /home/runner/work/*.zip
         name: Action-Kernel-Builder Release
         draft: false
         prerelease: false
@@ -35,8 +37,8 @@ jobs:
             - Some kernel build has different name (Image, Image.gz-dtb) so instead of compressing only the kernel itself as flashable, this builder compressed the whole boot/ folder.
             - Find your Kernel in boot/ folder inside the .zip file.
           - Flash:
-            - Clone [AnyKernel](https://github.com/thecatvoid/AnyKernel3.git)
-            - Copy the kernel inside boot/ folder, paste it in AnyKernel3 clone and .zip it.
+            - Download AnyKernel3.zip and your-kernel-here-xxxxxxx.zip, extract both.
+            - Copy the kernel inside the your-kernel-here-xxxxxxx folder, paste it in AnyKernel3 folder and compressed it.
             - Flash it via twrp or magisk.
 
     - name: Link of Release
