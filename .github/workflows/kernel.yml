@@ -24,7 +24,7 @@ jobs:
       with:
         artifacts: |
           /home/runner/work/ANY/*.zip
-          /home/runner/work/*.zip
+          /home/runner/work/out/arch/arm64/boot/*.zip
         name: Action-Kernel-Builder Release
         draft: false
         prerelease: false
