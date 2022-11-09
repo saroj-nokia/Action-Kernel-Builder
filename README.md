@@ -9,6 +9,6 @@ Github Action for Building a Custom Kernel from Source
 
 ## Releases Note (Please Read)
 - Instead of automatically put the compiled kernel (Image, Image-dtb, or whatever the name was) inside AnyKernel3.zip, I made 2-n-1 release.
-- AnyKernel3.zip without kernel inside, and myKernel.zip with kernel inside.
-- The myKernel.zip is not flashable kind of .zip files. You need to extract it, get the kernel inside.
-- Extract AnyKernel3.zip and place the kernel from myKernel.zip inside the AnyKernel folder compress it, then you can flash it now.
+- AnyKernel3.zip (without kernel inside), and myKernel.zip (with kernel inside).
+- You need to extract myKernel.zip, copy/move the kernel inside.
+- Extract AnyKernel3.zip and place the kernel from myKernel.zip inside the AnyKernel folder and compress it, then you can flash it now.
