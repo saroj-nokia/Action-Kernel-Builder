@@ -10,7 +10,7 @@ BINUTILS_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/
 
 BINUTILS_32_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
 
-KERNEL_SOURCE_URL="https://github.com/cd-Crypton/android_msm-kernel_asus"
+KERNEL_SOURCE_URL="https://github.com/cd-Crypton/realme_9SE-Q3s_kernel"
 
 ANYKERNEL_GIT="https://github.com/thecatvoid/AnyKernel3.git"
 
@@ -39,7 +39,7 @@ make_fun() {
 }
 
 # Make defconfig
-make_fun vendor/AI2201_GKI_perf_defconfig
+make_fun vendor/lahaina-qgki_defconfig
 
 # Make kernel
 make_fun -j"$(nproc --all)" || make_fun -j1
@@ -50,6 +50,6 @@ cd "${WORK}" || exit
 cd ANY || exit 1
 rm -rf ./*Image* ./*.zip
 cp -r "${KERNEL_SRC}/out/arch/arm64/boot/" ./
-dates="$(date +%F+%T%z)"
+dates="$(date +%Y%m%d-%R)"
 zip -r9 "${dates}.zip" ./* -x .git README.md ./*placeholder
 curl -T "${dates}.zip" temp.sh
