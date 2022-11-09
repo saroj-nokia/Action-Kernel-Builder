@@ -2,34 +2,42 @@
 
 set -e -x
 
+# Work Path
 WORK="${HOME}/work"
+
+# Kernel Path
 KERNEL_SRC="${WORK}/your-kernel"
-CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android11-release/clang-r383902.tar.gz"
 
-BINUTILS_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" 
-
-BINUTILS_32_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
-
+# Kernel Source - Recommend to replace the URL by your target Kernel Source
 KERNEL_SOURCE_URL="https://github.com/MiCode/Xiaomi_Kernel_OpenSource"
 
+# Clang URL - Change the version, depends on your kernel source.
+CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android11-release/clang-r383902.tar.gz"
+
+# Utilities URL x86_x64 - Change it depends on your preference.
+BINUTILS_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" 
+BINUTILS_32_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
+
+# Others - Don't change this.
 ANYKERNEL_GIT="https://github.com/thecatvoid/AnyKernel3.git"
 
+# Prepare Directory
 mkdir -p "${WORK}"
 cd "${WORK}" || exit 1
 
-# Setup stuff
+# Cloning all the Necessary files
 if [ ! -d clang ]; then mkdir clang && curl -Lsq "${CLANG_TAR_URL}" -o clang.tgz && tar -xzf clang.tgz -C clang; fi
 [ ! -d binutils ] && git clone --depth=1 "${BINUTILS_GIT}" -b android12L-release binutils
 [ ! -d binutils-32 ] && git clone --depth=1 "${BINUTILS_32_GIT}" -b android12L-release binutils-32
 [ ! -d your-kernel ] && git clone --depth=1 "${KERNEL_SOURCE_URL}" -b nabu-r-oss your-kernel
 
-# Set toolchain path
+# Setting Toolchain Path
 PATH="${WORK}/clang/bin:${WORK}/binutils/bin:${WORK}/binutils-32/bin:/bin"
 
-# Build kernel
+# Preparing Build Process
 cd "${KERNEL_SRC}" || exit 1
 
-# Android cross compile make function
+# Android Cross-Compile Make_Function
 make_fun() {
 	make O=out ARCH=arm64 \
 		CC=clang HOSTCC=clang \
@@ -38,10 +46,10 @@ make_fun() {
 		CROSS_COMPILE_ARM32=arm-linux-androideabi- "$@" 
 }
 
-# Make defconfig
+# Prepare _defconfig - Change it base on your choice in arm/../configs/
 make_fun nabu_user_defconfig
 
-# Make kernel
+# Start Compiling Kernel
 make_fun -j"$(nproc --all)" || make_fun -j1
 
 # Upload built kernel
