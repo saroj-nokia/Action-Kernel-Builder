@@ -24,7 +24,7 @@ jobs:
       with:
         artifacts: |
           /home/runner/work/ANY/*.zip
-          /home/runner/work/your-kernel/out/arch/arm64/boot/*.zip
+          /home/runner/work/myKernel/out/arch/arm64/boot/*.zip
         name: Action-Kernel-Builder Release
         draft: false
         prerelease: true
@@ -33,11 +33,11 @@ jobs:
         body: |
           ## Action-Kernel-Builder: ${{ steps.props.outputs.date }}
           - Notes:
-            - Uploaded AnyKernel3.zip (without kernel inside) and your-kernel-here-xxxxxx.zip with your newly-compiled kernel inside.
+            - Uploaded AnyKernel3.zip (without kernel inside) and myKernel-xxxxxx.zip with your newly-compiled kernel inside.
             - Read my instruction below first.
           - Flash:
-            - Download AnyKernel3.zip and your-kernel-here-xxxxxxx.zip (whatever the name was), extract both.
-            - Copy a kernel (could be Image, Image-dtb, Image.gz-dtb, pick one) inside your-kernel-here-xxxxxxx folder, and paste it in AnyKernel3 folder and compressed it.
+            - Download AnyKernel3.zip and myKernel-xxxxxxx.zip (whatever the name was), extract both.
+            - Copy a kernel (could be Image, Image-dtb, Image.gz-dtb, pick one) inside myKernel-xxxxxxx folder, and paste it in AnyKernel3 folder and compressed it.
             - Flash it via twrp or magisk.
 
     - name: Link of Release
