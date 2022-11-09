@@ -33,9 +33,8 @@ jobs:
         body: |
           ## Action-Kernel-Builder: ${{ steps.props.outputs.date }}
           - Notes:
-            - Do not flash the .zip, this includes all files in out/boot folder.
-            - Some kernel build has different name (Image, Image.gz-dtb) so instead of compressing only the kernel itself as flashable, this builder compressed the whole boot/ folder.
-            - Find your Kernel in boot/ folder inside the .zip file.
+            - Uploaded AnyKernel3.zip (without kernel inside) and your-kernel-here-xxxxxx.zip with your newly-compiled kernel inside.
+            - Read my instruction below first.
           - Flash:
             - Download AnyKernel3.zip and your-kernel-here-xxxxxxx.zip (whatever the name was), extract both.
             - Copy a kernel (could be Image, Image-dtb, Image.gz-dtb, pick one) inside your-kernel-here-xxxxxxx folder, and paste it in AnyKernel3 folder and compressed it.
