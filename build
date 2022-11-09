@@ -39,7 +39,7 @@ make_fun() {
 }
 
 # Make defconfig
-make_fun vendor/lahaina-qgki_defconfig
+make_fun nabu_user_defconfig
 
 # Make kernel
 make_fun -j"$(nproc --all)" || make_fun -j1
