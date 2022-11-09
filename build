@@ -4,13 +4,13 @@ set -e -x
 
 WORK="${HOME}/work"
 KERNEL_SRC="${WORK}/your-kernel"
-CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r383902.tar.gz"
+CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android11-release/clang-r383902.tar.gz"
 
 BINUTILS_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" 
 
 BINUTILS_32_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
 
-KERNEL_SOURCE_URL="https://github.com/cd-Crypton/realme_9SE-Q3s_kernel"
+KERNEL_SOURCE_URL="https://github.com/MiCode/Xiaomi_Kernel_OpenSource -b nabu-r-oss"
 
 ANYKERNEL_GIT="https://github.com/thecatvoid/AnyKernel3.git"
 
