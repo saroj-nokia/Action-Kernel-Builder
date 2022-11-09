@@ -10,20 +10,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Build Environment
-      run: |
-        git clone https://github.com/cd-Spidey/Random ./setting
-        cd setting/setup/packages
-        sudo bash build_env.sh
-        sudo bash open_jdk.sh
-
-    - name: Git-Repo
-      run: |
-        git config --global advice.detachedHead false
-        git clone https://android.googlesource.com/tools/repo -b v2.29 ~/bin
-        chmod a+x ~/bin/repo
-        sudo ln -sf ~/bin/repo /usr/bin/repo
-
     - name: Set Properties # Output will be use in final name of recovery.
       id: props
       run: |
@@ -44,16 +30,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
           ## All Package of Out-Dir Kernel
-
-
-    - name: Send to Telegram
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          ${{ github.actor }} Upload New Kernel:
-          Release: https://github.com/${{ github.repository }}/releases/tag/${{ github.run_id }}-${{ steps.props.outputs.date }}
 
     - name: Link of Release
       run: |
