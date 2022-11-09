@@ -1,7 +1,22 @@
 name: Build Kernel
-
+# Did you edit build file first? If not, edit it.
 on: 
   workflow_dispatch:
+    inputs:
+      DEVICE_CODENAME:
+        description: 'Your device codename.'
+        required: true
+        default: 'nabu'
+      ANDROID_VERSION:
+        description: 'Your android version.'
+        required: true
+        default: ''
+        type: choice
+        options:
+        - Android-S
+        - Android-R
+        - Android-Q
+        - Android-P
 
 jobs:
   build:
@@ -25,7 +40,7 @@ jobs:
         artifacts: |
           /home/runner/work/ANY/*.zip
           /home/runner/work/myKernel/out/arch/arm64/boot/*.zip
-        name: Action Kernel Builder - Release ${{ steps.props.outputs.date }}
+        name: Kernel for {{ github.event.inputs.DEVICE_CODENAME }}-{{ github.event.inputs.ANDROID_VERSION }} - Build ${{ steps.props.outputs.date }}
         draft: false
         prerelease: true
         tag: ${{ github.run_id }}-${{ steps.props.outputs.date }}
