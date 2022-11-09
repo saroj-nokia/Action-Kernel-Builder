@@ -21,7 +21,7 @@ cd "${WORK}" || exit 1
 if [ ! -d clang ]; then mkdir clang && curl -Lsq "${CLANG_TAR_URL}" -o clang.tgz && tar -xzf clang.tgz -C clang; fi
 [ ! -d binutils ] && git clone --depth=1 "${BINUTILS_GIT}" -b android12L-release binutils
 [ ! -d binutils-32 ] && git clone --depth=1 "${BINUTILS_32_GIT}" -b android12L-release binutils-32
-[ ! -d your-kernel ] && git clone --depth=1 "${KERNEL_SOURCE_URL}" your-kernel
+[ ! -d your-kernel ] && git clone "${KERNEL_SOURCE_URL}" your-kernel
 
 # Set toolchain path
 PATH="${WORK}/clang/bin:${WORK}/binutils/bin:${WORK}/binutils-32/bin:/bin"
