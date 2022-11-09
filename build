@@ -10,7 +10,7 @@ BINUTILS_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/
 
 BINUTILS_32_GIT="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
 
-KERNEL_SOURCE_URL="https://github.com/MiCode/Xiaomi_Kernel_OpenSource -b nabu-r-oss"
+KERNEL_SOURCE_URL="https://github.com/MiCode/Xiaomi_Kernel_OpenSource"
 
 ANYKERNEL_GIT="https://github.com/thecatvoid/AnyKernel3.git"
 
@@ -21,7 +21,7 @@ cd "${WORK}" || exit 1
 if [ ! -d clang ]; then mkdir clang && curl -Lsq "${CLANG_TAR_URL}" -o clang.tgz && tar -xzf clang.tgz -C clang; fi
 [ ! -d binutils ] && git clone --depth=1 "${BINUTILS_GIT}" -b android12L-release binutils
 [ ! -d binutils-32 ] && git clone --depth=1 "${BINUTILS_32_GIT}" -b android12L-release binutils-32
-[ ! -d your-kernel ] && git clone "${KERNEL_SOURCE_URL}" your-kernel
+[ ! -d your-kernel ] && git clone --depth=1 "${KERNEL_SOURCE_URL} -b nabu-r-oss" your-kernel
 
 # Set toolchain path
 PATH="${WORK}/clang/bin:${WORK}/binutils/bin:${WORK}/binutils-32/bin:/bin"
