@@ -51,5 +51,5 @@ cd ANY || exit 1
 rm -rf ./*Image* ./*.zip
 zip -r9 "AnyKernel3.zip" ./* -x .git README.md ./*placeholder
 dates="$(TZ=Asia/Manila date +%Y%m%d-%l%M%p)"
-cd .. || exit 1
-zip -r9 "your-kernel-here-${dates}.zip" ${KERNEL_SRC}/out/arch/arm64/boot/* -x dts
+cd .. && cd ${KERNEL_SRC}/out/arch/arm64/boot || exit 1
+zip -r9 "your-kernel-here-${dates}.zip" ./* -x ./dts
