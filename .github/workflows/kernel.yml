@@ -37,7 +37,7 @@ jobs:
             - Some kernel build has different name (Image, Image.gz-dtb) so instead of compressing only the kernel itself as flashable, this builder compressed the whole boot/ folder.
             - Find your Kernel in boot/ folder inside the .zip file.
           - Flash:
-            - Download `AnyKernel3.zip` and `your-kernel-here-xxxxxxx.zip`, extract both.
+            - Download [AnyKernel3.zip](https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ github.run_id }}-${{ steps.props.outputs.date }}/AnyKernel3.zip) and https://github.com/${GITHUB_REPOSITORY}/releases/tag/${{ github.run_id }}-${{ steps.props.outputs.date }}, extract both.
             - Copy the kernel inside the your-kernel-here-xxxxxxx folder, paste it in AnyKernel3 folder and compressed it.
             - Flash it via twrp or magisk.
 
