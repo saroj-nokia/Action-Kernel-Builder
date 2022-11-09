@@ -49,7 +49,7 @@ cd "${WORK}" || exit
 [ ! -d ANY ] && git clone --depth=1 "${ANYKERNEL_GIT}" ANY
 cd ANY || exit 1
 rm -rf ./*Image* ./*.zip
-cp -r "${KERNEL_SRC}/out/arch/arm64/boot/" ./
-dates="$(date +%Y%m%d-%R)"
-zip -r9 "your-kernel-${dates}.zip" ./* -x .git README.md ./*placeholder
-curl -T "your-kernel-${dates}.zip" temp.sh
+zip -r9 "AnyKernel3.zip" ./* -x .git README.md ./*placeholder
+dates="$(TZ=Asia/Manila date +%Y%m%d-%l%M%p)"
+cd .. || exit 1
+zip -r9 "your-kernel-here-${dates}.zip" ${KERNEL_SRC}/out/arch/arm64/boot/* -x dts
