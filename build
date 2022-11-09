@@ -51,5 +51,5 @@ cd ANY || exit 1
 rm -rf ./*Image* ./*.zip
 cp -r "${KERNEL_SRC}/out/arch/arm64/boot/" ./
 dates="$(date +%Y%m%d-%R)"
-zip -r9 "${dates}.zip" ./* -x .git README.md ./*placeholder
-curl -T "${dates}.zip" temp.sh
+zip -r9 "your-kernel-${dates}.zip" ./* -x .git README.md ./*placeholder
+curl -T "your-kernel-${dates}.zip" temp.sh
