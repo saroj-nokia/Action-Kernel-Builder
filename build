@@ -5,7 +5,7 @@ set -e -x
 # Work Path
 WORK="${HOME}/work"
 
-# Kernel Folder Name
+# Kernel Folder Name - Don't change
 KERNEL="your-kernel-here"
 
 # Kernel Source Path
