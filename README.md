@@ -6,3 +6,9 @@ Github Action for Building a Custom Kernel from Source
 - Clang are currently set in android11-release, version clang-r383902.
 - To change, open `build` file, and edit everything you wish to change.
 - Also, do not forget to edit and change the name_defconfig part.
+
+## Releases Note (Please Read)
+- Instead of automatically put the compiled kernel (Image, Image-dtb, or whatever the name was) inside AnyKernel3.zip, I made 2-n-1 release.
+- AnyKernel3.zip without kernel inside, and myKernel.zip with kernel inside.
+- The myKernel.zip is not flashable kind of .zip files. You need to extract it, get the kernel inside.
+- Extract AnyKernel3.zip and place the kernel from myKernel.zip inside the AnyKernel folder compress it, then you can flash it now.
