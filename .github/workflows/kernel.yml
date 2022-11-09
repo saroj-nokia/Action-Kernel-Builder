@@ -30,11 +30,11 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
           ## Action-Kernel-Builder: ${{ steps.props.outputs.date }}
-          Note:
+          - Notes:
             - Do not flash the .zip, this includes all files in out/boot folder.
             - Some kernel build has different name (Image, Image.gz-dtb) so instead of compressing only the kernel itself as flashable, this builder compressed the whole boot/ folder.
             - Find your Kernel in boot/ folder inside the .zip file.
-          Flash:
+          - Flash:
             - Clone [AnyKernel](https://github.com/thecatvoid/AnyKernel3.git)
             - Copy the kernel inside boot/ folder, paste it in AnyKernel3 clone and .zip it.
             - Flash it via twrp or magisk.
