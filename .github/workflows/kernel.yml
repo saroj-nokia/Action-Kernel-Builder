@@ -13,10 +13,10 @@ on:
         default: ''
         type: choice
         options:
-        - Android-S
-        - Android-R
-        - Android-Q
-        - Android-P
+        - android-S
+        - android-R
+        - android-Q
+        - android-P
 
 jobs:
   build:
@@ -46,7 +46,7 @@ jobs:
         tag: ${{ github.run_id }}-${{ steps.props.outputs.date }}
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-          ## Custom Kernel via Github Actions
+          ## Custom Kernel via Github Actions ({{ github.event.inputs.DEVICE_CODENAME }}-{{ github.event.inputs.ANDROID_VERSION }})
           - Notes:
             - Uploaded AnyKernel3.zip (without kernel inside) and myKernel-xxxxxx.zip with your newly-compiled kernel inside.
             - Read my instruction below first.
