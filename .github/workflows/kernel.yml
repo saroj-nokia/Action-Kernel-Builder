@@ -27,7 +27,7 @@ jobs:
           /home/runner/work/out/arch/arm64/boot/*.zip
         name: Action-Kernel-Builder Release
         draft: false
-        prerelease: false
+        prerelease: true
         tag: ${{ github.run_id }}-${{ steps.props.outputs.date }}
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
