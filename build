@@ -5,8 +5,11 @@ set -e -x
 # Work Path
 WORK="${HOME}/work"
 
-# Kernel Path
-KERNEL_SRC="${WORK}/your-kernel"
+# Kernel Folder Name
+KERNEL="your-kernel-here"
+
+# Kernel Source Path
+KERNEL_SRC="${WORK}/${KERNEL}"
 
 # Kernel Source - Recommend to replace the URL by your target Kernel Source
 KERNEL_SOURCE_URL="https://github.com/MiCode/Xiaomi_Kernel_OpenSource"
@@ -29,7 +32,7 @@ cd "${WORK}" || exit 1
 if [ ! -d clang ]; then mkdir clang && curl -Lsq "${CLANG_TAR_URL}" -o clang.tgz && tar -xzf clang.tgz -C clang; fi
 [ ! -d binutils ] && git clone --depth=1 "${BINUTILS_GIT}" -b android12L-release binutils
 [ ! -d binutils-32 ] && git clone --depth=1 "${BINUTILS_32_GIT}" -b android12L-release binutils-32
-[ ! -d your-kernel ] && git clone --depth=1 "${KERNEL_SOURCE_URL}" -b nabu-r-oss your-kernel
+[ ! -d your-kernel ] && git clone --depth=1 "${KERNEL_SOURCE_URL}" -b nabu-r-oss ${KERNEL}
 
 # Setting Toolchain Path
 PATH="${WORK}/clang/bin:${WORK}/binutils/bin:${WORK}/binutils-32/bin:/bin"
@@ -60,4 +63,4 @@ rm -rf ./*Image* ./*.zip
 zip -r9 "AnyKernel3.zip" ./* -x .git README.md ./*placeholder
 dates="$(TZ=Asia/Manila date +%Y%m%d-%I%M%p)"
 cd .. && cd ${KERNEL_SRC}/out/arch/arm64/boot || exit 1
-zip -r9 "your-kernel-here-${dates}.zip" ./* -x "dts" -x "dts/*"
+zip -r9 "${KERNEL}-${dates}.zip" ./* -x "dts" -x "dts/*"
