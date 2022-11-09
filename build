@@ -35,10 +35,10 @@ cd "${WORK}" || exit 1
 if [ ! -d clang ]; then mkdir clang && curl -Lsq "${CLANG_TAR_URL}" -o clang.tgz && tar -xzf clang.tgz -C clang; fi
 [ ! -d binutils-64 ] && git clone --depth=1 "${BINUTILS_x64}" -b ${x64_BRANCH} binutils-64
 [ ! -d binutils-32 ] && git clone --depth=1 "${BINUTILS_x32}" -b ${x32_BRANCH} binutils-32
-[ ! -d ${KERNEL} ] && git clone --depth=1 "${KERNEL_SOURCE_URL}" -b ${KERNEL_BRANCH} ${KERNEL}
+[ ! -d myKernel ] && git clone --depth=1 "${KERNEL_SOURCE_URL}" -b ${KERNEL_BRANCH} ${KERNEL}
 
 # Setting Toolchain Path
-PATH="${WORK}/clang/bin:${WORK}/binutils/bin:${WORK}/binutils-32/bin:/bin"
+PATH="${WORK}/clang/bin:${WORK}/binutils-64/bin:${WORK}/binutils-32/bin:/bin"
 
 # Preparing Build Process
 cd "${KERNEL_SRC}" || exit 1
