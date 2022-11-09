@@ -13,7 +13,7 @@ jobs:
     - name: Set Properties # Output will be use in final name of recovery.
       id: props
       run: |
-        echo "date=$(TZ=Asia/Manila date +%Y%m%d%I%M%p)" >> $GITHUB_OUTPUT
+        echo "date=$(TZ=Asia/Manila date +%Y%m%d-%I%M%p)" >> $GITHUB_OUTPUT
       
     - name: Start Building Kernel
       run: |
