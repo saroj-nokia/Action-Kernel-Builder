@@ -12,8 +12,8 @@ KERNEL="myKernel"
 KERNEL_SRC="${WORK}/${KERNEL}"
 
 # Kernel Source - Recommend to replace the URL by your target Kernel Source and Branch (even if its main or master, put it).
-KERNEL_SOURCE_URL="https://github.com/cd-Crypton/realme_V20_9i-5G-AndroidS-kernel-source"
-KERNEL_BRANCH="master-new"
+KERNEL_SOURCE_URL="https://github.com/oppo-source/android_kernel_oppo_sm6225"
+KERNEL_BRANCH="oppo/sm6225_12.0_oppo_pad_air"
 
 # Clang URL - Change the version, depends on your kernel source.
 CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r383902.tar.gz"
@@ -53,7 +53,7 @@ make_fun() {
 }
 
 # Prepare _defconfig - Change it base on your choice in arm/../configs/
-make_fun vendor/rmx3491_defconfig
+make_fun vendor/bengal_defconfig
 
 # Start Compiling Kernel
 make_fun -j"$(nproc --all)" || make_fun -j1
