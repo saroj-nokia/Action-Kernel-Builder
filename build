@@ -12,17 +12,17 @@ KERNEL="myKernel"
 KERNEL_SRC="${WORK}/${KERNEL}"
 
 # Kernel Source - Recommend to replace the URL by your target Kernel Source and Branch (even if its main or master, put it).
-KERNEL_SOURCE_URL="https://github.com/cd-Spidey/twrp_kernel_xiaomi_begonia"
-KERNEL_BRANCH="patch-1"
+KERNEL_SOURCE_URL="https://github.com/mistersmee/android_kernel_motorola_cebu"
+KERNEL_BRANCH="twrp-11"
 
 # Clang URL - Change the version, depends on your kernel source.
-CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r383902.tar.gz"
+CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android11-release/clang-r383902.tar.gz"
 
 # Utilities URL x86_x64 - Change it depends on your preference.
 BINUTILS_x64="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9"
-x64_BRANCH="android12L-release"
+x64_BRANCH="android11-release"
 BINUTILS_x32="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
-x32_BRANCH="android12L-release"
+x32_BRANCH="android11-release"
 
 # Others - Don't change this.
 ANYKERNEL_GIT="https://github.com/thecatvoid/AnyKernel3.git"
@@ -53,7 +53,7 @@ make_fun() {
 }
 
 # Prepare _defconfig - Change it base on your choice in arm/../configs/
-make_fun begonia_user_defconfig
+make_fun vendor/benga-perf_defconfig
 
 # Start Compiling Kernel
 make_fun -j"$(nproc --all)" || make_fun -j1
