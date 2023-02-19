@@ -8,8 +8,7 @@ Github Action for Building a Custom Kernel from Source
 - Also, do not forget to edit and change the name_defconfig part.
 
 ## Releases Note (Please Read)
-- Instead of automatically put the compiled kernel (Image, Image-dtb, or whatever the name was) inside AnyKernel3.zip, I made 2-n-1 release.
-- AnyKernel3.zip (without kernel inside), and myKernel.zip (with kernel inside).
-- You need to extract myKernel.zip, copy/move the kernel inside.
-- Extract AnyKernel3.zip and place the kernel from myKernel.zip inside the AnyKernel folder and compress it, then you can flash it now.
-- I made it like this as kernel comes with different names sometimes, and for others who need kernel with dtb—their Custom Recovery Compiling.
+- All built kernel will be in a folder and upload as zip.
+- Download and Extract the .zip, and look for kernel inside.
+- You should be able to find Image.gz, Image, Image.gz-dtb or whatever it is.
+- Pick one that you actually need.
