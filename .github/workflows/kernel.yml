@@ -20,6 +20,9 @@ on:
         - n-oss
         - m-oss
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -39,9 +42,7 @@ jobs:
     - name: Release
       uses: ncipollo/release-action@v1.12.0
       with:
-        artifacts: |
-          /home/runner/work/ANY/*.zip
-          /home/runner/work/myKernel/out/arch/arm64/boot/*.zip
+        artifacts: /home/runner/work/myKernel/out/arch/arm64/boot/*.zip
         name: Custom Kernel - Build ${{ steps.props.outputs.date }}
         draft: false
         prerelease: true
@@ -50,12 +51,7 @@ jobs:
         body: |
           ## Custom Kernel via Github Actions for ${{ github.event.inputs.DEVICE_NAME }}-${{ github.event.inputs.ANDROID_VERSION }}
           - Notes:
-            - Uploaded AnyKernel3.zip (without kernel inside) and myKernel-xxxxxx.zip with your newly-compiled kernel inside.
-            - Read my instruction below first.
-          - Flash:
-            - Download AnyKernel3.zip and myKernel-xxxxxxx.zip (whatever the name was), extract both.
-            - Copy a kernel (could be Image, Image-dtb, Image.gz-dtb, pick one) inside myKernel-xxxxxxx folder, and paste it in AnyKernel3 folder and compressed it.
-            - Flash it via twrp or magisk.
+            - Uploaded myKernel-xxxxxx.zip with your newly-compiled kernel inside.
 
     - name: Link of Release
       run: |
