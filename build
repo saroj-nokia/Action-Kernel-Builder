@@ -12,11 +12,11 @@ KERNEL="myKernel"
 KERNEL_SRC="${WORK}/${KERNEL}"
 
 # Kernel Source - Recommend to replace the URL by your target Kernel Source and Branch (even if its main or master, put it).
-KERNEL_SOURCE_URL="https://github.com/cd-Crypton/android_kernel_realme_messi"
-KERNEL_BRANCH="messi"
+KERNEL_SOURCE_URL="https://github.com/cd-Spidey/kernel_realme_messi"
+KERNEL_BRANCH="master"
 
 # Clang URL - Change the version, depends on your kernel source.
-CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r383902.tar.gz"
+CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r416183b1.tar.gz"
 
 # Utilities URL x86_x64 - Change it depends on your preference.
 BINUTILS_x64="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9"
@@ -42,6 +42,10 @@ PATH="${WORK}/clang/bin:${WORK}/binutils-64/bin:${WORK}/binutils-32/bin:/bin"
 
 # Preparing Build Process
 cd "${KERNEL_SRC}" || exit 1
+
+# Additional Info
+export KBUILD_BUILD_USER="cd-Spidey"
+export KBUILD_BUILD_HOST="messi"
 
 # Android Cross-Compile Make_Function
 make_fun() {
