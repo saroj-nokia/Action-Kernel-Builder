@@ -25,7 +25,7 @@ BINUTILS_x32="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/
 x32_BRANCH="android12L-release"
 
 # Others - Don't change this.
-ANYKERNEL_GIT="https://github.com/thecatvoid/AnyKernel3.git"
+ANYKERNEL_GIT="https://github.com/osm0sis/AnyKernel3"
 
 # Prepare Directory
 mkdir -p "${WORK}"
@@ -44,7 +44,7 @@ PATH="${WORK}/clang/bin:${WORK}/binutils-64/bin:${WORK}/binutils-32/bin:/bin"
 cd "${KERNEL_SRC}" || exit 1
 
 # Additional Info
-export KBUILD_BUILD_USER="cd-Spidey"
+export KBUILD_BUILD_USER="cd-Crypton"
 export KBUILD_BUILD_HOST="messi"
 
 # Android Cross-Compile Make_Function
