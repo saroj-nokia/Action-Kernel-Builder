@@ -57,7 +57,7 @@ make_fun() {
 }
 
 # Prepare _defconfig - Change it base on your choice in arm/../configs/
-make_fun vendor/messi_defconfig
+make_fun vendor/bengal_defconfig
 
 # Start Compiling Kernel
 make_fun -j"$(nproc --all)" || make_fun -j1
