@@ -2,52 +2,20 @@
 
 set -e -x
 
-# Work Path
-WORK="${HOME}/work"
+# Kernel Source
+KERNEL_SOURCE="https://github.com/cd-Crypton/android_kernel_realme_messi"
+KERNEL_BRANCH="messi-12.1"
+KERNEL_DEFCONFIG="vendor/bengal_defconfig"
 
-# Kernel Folder Name - Don't change
-KERNEL="myKernel"
+# Prebuilt Clang Toolchain (AOSP)
+CLANG_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r383902.tar.gz"
 
-# Kernel Source Path
-KERNEL_SRC="${WORK}/${KERNEL}"
+# Prebuilt GCC Utilities (AOSP)
+GCC_x64="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9"
+GCC_x32="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
+GCC_BRANCH="android12L-release"
 
-# Kernel Source - Recommend to replace the URL by your target Kernel Source and Branch (even if its main or master, put it).
-KERNEL_SOURCE_URL="https://github.com/cd-Spidey/kernel_realme_messi"
-KERNEL_BRANCH="messi"
-
-# Clang URL - Change the version, depends on your kernel source.
-CLANG_TAR_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r383902.tar.gz"
-
-# Utilities URL x86_x64 - Change it depends on your preference.
-BINUTILS_x64="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9"
-x64_BRANCH="android12L-release"
-BINUTILS_x32="https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"
-x32_BRANCH="android12L-release"
-
-# Others - Don't change this.
-ANYKERNEL_GIT="https://github.com/osm0sis/AnyKernel3"
-
-# Prepare Directory
-mkdir -p "${WORK}"
-cd "${WORK}" || exit 1
-
-# Cloning all the Necessary files
-if [ ! -d clang ]; then mkdir clang && curl -Lsq "${CLANG_TAR_URL}" -o clang.tgz && tar -xzf clang.tgz -C clang; fi
-[ ! -d binutils-64 ] && git clone --depth=1 "${BINUTILS_x64}" -b ${x64_BRANCH} binutils-64
-[ ! -d binutils-32 ] && git clone --depth=1 "${BINUTILS_x32}" -b ${x32_BRANCH} binutils-32
-[ ! -d myKernel ] && git clone --depth=1 "${KERNEL_SOURCE_URL}" -b ${KERNEL_BRANCH} ${KERNEL}
-
-# Setting Toolchain Path
-PATH="${WORK}/clang/bin:${WORK}/binutils-64/bin:${WORK}/binutils-32/bin:/bin"
-
-# Preparing Build Process
-cd "${KERNEL_SRC}" || exit 1
-
-# Additional Info
-export KBUILD_BUILD_USER="cd-Crypton"
-export KBUILD_BUILD_HOST="messi"
-
-# Android Cross-Compile Make_Function
+# Setup make Command
 make_fun() {
 	make O=out ARCH=arm64 \
 		CC=clang HOSTCC=clang \
@@ -56,18 +24,31 @@ make_fun() {
 		CROSS_COMPILE_ARM32=arm-linux-androideabi- "$@" 
 }
 
-# Prepare _defconfig - Change it base on your choice in arm/../configs/
-make_fun vendor/bengal_defconfig
+# Work Path
+WORK="${HOME}/work"
+
+# Kernel Folder Name
+KERNEL="myKernel"
+
+# Kernel Source Path
+KERNEL_SRC="${WORK}/${KERNEL}"
+
+# Prepare Directory
+mkdir -p "${WORK}"
+cd "${WORK}" || exit 1
+
+# Cloning all the Necessary files
+if [ ! -d clang ]; then mkdir clang && curl -Lsq "${CLANG_URL}" -o clang.tgz && tar -xzf clang.tgz -C clang; fi
+[ ! -d x64 ] && git clone --depth=1 "${GCC_x64}" -b "${GCC_BRANCH}" ./x64
+[ ! -d x32 ] && git clone --depth=1 "${GCC_x32}" -b "${GCC_BRANCH}" ./x32
+[ ! -d "${KERNEL}" ] && git clone --depth=1 "${KERNEL_SOURCE}" -b "${KERNEL_BRANCH}" "${KERNEL}"
+
+# Setting Toolchain Path
+PATH="${WORK}/clang/bin:${WORK}/x64/bin:${WORK}/x32/bin:/bin"
+
+# Enter Kernel root directory
+cd "${KERNEL_SRC}" || exit 1
 
 # Start Compiling Kernel
-make_fun -j"$(nproc --all)" || make_fun -j1
-
-# Upload built kernel
-cd "${WORK}" || exit
-[ ! -d ANY ] && git clone --depth=1 "${ANYKERNEL_GIT}" ANY
-cd ANY || exit 1
-rm -rf ./*Image* ./*.zip
-zip -r9 "AnyKernel3.zip" ./* -x .git README.md ./*placeholder
-dates="$(TZ=Asia/Manila date +%Y%m%d-%I%M%p)"
-cd .. && cd ${KERNEL_SRC}/out/arch/arm64/boot || exit 1
-zip -r9 "${KERNEL}-${dates}.zip" ./* -x "dts" -x "dts/*"
+make_fun "${KERNEL_DEFCONFIG}"
+make_fun -j"$(nproc --all)" 2>&1 | tee build.log 

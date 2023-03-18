@@ -1,5 +1,5 @@
 name: Build Kernel
-# Did you edit build file first? If not, edit it.
+
 on: 
   workflow_dispatch:
     inputs:
@@ -13,12 +13,10 @@ on:
         default: ''
         type: choice
         options:
+        - t-oss
         - s-oss
         - r-oss
         - q-oss
-        - o-oss
-        - n-oss
-        - m-oss
 
 permissions:
   contents: write
@@ -30,28 +28,37 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Set Properties # Output will be use in final name of recovery.
+    - name: Start Building Kernel
+      run: |
+        export KBUILD_BUILD_USER="${{ github.actor }}"
+        export KBUILD_BUILD_HOST="${{ github.event.inputs.DEVICE_NAME }}"
+        ./build
+
+    - name: Set Properties
       id: props
       run: |
         echo "date=$(TZ=Asia/Manila date +%Y%m%d-%I%M%p)" >> $GITHUB_OUTPUT
-      
-    - name: Start Building Kernel
+
+    - name: Compressed as Archive
       run: |
-        ./build
+        cd /home/runner/work/myKernel/out/arch/arm64/boot || exit 1
+        zip -r9 "${{ github.event.inputs.DEVICE_NAME }}-${{ steps.props.outputs.date }}.zip" ./* -x "dts" -x "dts/*"
 
     - name: Release
       uses: ncipollo/release-action@v1.12.0
       with:
-        artifacts: /home/runner/work/myKernel/out/arch/arm64/boot/*.zip
-        name: Custom Kernel - Build ${{ steps.props.outputs.date }}
+        artifacts: |
+          /home/runner/work/myKernel/out/arch/arm64/boot/*.zip
+          /home/runner/work/myKernel/build.log
+        name: Compiled Kernel for ${{ github.event.inputs.DEVICE_NAME }} - ${{ steps.props.outputs.date }}
         draft: false
         prerelease: true
         tag: ${{ github.run_id }}-${{ steps.props.outputs.date }}
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-          ## Custom Kernel via Github Actions for ${{ github.event.inputs.DEVICE_NAME }}-${{ github.event.inputs.ANDROID_VERSION }}
-          - Notes:
-            - Uploaded myKernel-xxxxxx.zip with your newly-compiled kernel inside.
+          ## Notes
+            - Extract ${{ github.event.inputs.DEVICE_NAME }}-${{ steps.props.outputs.date }}.zip, look your newly-compiled kernel inside.
+            - Include building logs.
 
     - name: Link of Release
       run: |
