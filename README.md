@@ -14,3 +14,6 @@ Change compiler and toolchain based on your preferred version, or based on what 
 - Download and Extract the .zip, and look for kernel inside.
 - You should be able to find Image.gz, Image, Image.gz-dtb or whatever it is.
 - Pick one that you actually need.
+
+## Flashable Template
+Use this template: [AnyKernel3 by osmOsis](https://github.com/osm0sis/AnyKernel3). Please read carefully all the information it before trying.

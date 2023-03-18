@@ -52,7 +52,7 @@ jobs:
           /home/runner/work/myKernel/build.log
         name: Compiled Kernel for ${{ github.event.inputs.DEVICE_NAME }} - ${{ steps.props.outputs.date }}
         draft: false
-        prerelease: true
+        prerelease: false
         tag: ${{ github.run_id }}-${{ steps.props.outputs.date }}
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
