@@ -4,7 +4,7 @@ set -e -x
 
 # Kernel Source
 KERNEL_SOURCE="https://github.com/cd-Crypton/android_kernel_realme_messi"
-KERNEL_BRANCH="lineage-20-merge"
+KERNEL_BRANCH="staging"
 KERNEL_DEFCONFIG="vendor/bengal-messi_defconfig"
 
 # Prebuilt Clang Toolchain (AOSP)
