@@ -4,7 +4,7 @@ set -e -x
 
 # Kernel Source
 KERNEL_SOURCE="https://github.com/cd-Crypton/android_kernel_realme_messi"
-KERNEL_BRANCH="lineage-20-merge"
+KERNEL_BRANCH="messi-12.1-3"
 KERNEL_DEFCONFIG="vendor/bengal_defconfig"
 
 # Prebuilt Clang Toolchain (AOSP)
@@ -50,7 +50,7 @@ PATH="${WORK}/clang/bin:${WORK}/x64/bin:${WORK}/x32/bin:/bin"
 cd "${KERNEL_SRC}" || exit 1
 
 # KernelSU - Disable if not building one.
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+# curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
 
 # Start Compiling Kernel
 make_fun "${KERNEL_DEFCONFIG}"
