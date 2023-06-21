@@ -4,8 +4,8 @@ set -e -x
 
 # Kernel Source
 KERNEL_SOURCE="https://github.com/cd-Crypton/android_kernel_realme_sm6225"
-KERNEL_BRANCH="T"
-KERNEL_DEFCONFIG="vendor/bengal_defconfig"
+KERNEL_BRANCH="T-staging"
+KERNEL_DEFCONFIG="vendor/bengal-stock_defconfig"
 
 # Prebuilt Clang Toolchain (AOSP)
 CLANG_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r383902.tar.gz"
