@@ -4,8 +4,8 @@ set -e -x
 
 # Kernel Source
 KERNEL_SOURCE="https://github.com/LineageOS/android_kernel_motorola_sm6225"
-KERNEL_BRANCH="lineage-20"
-KERNEL_DEFCONFIG="vendor/bengal-perf_defconfig"
+KERNEL_BRANCH="Merge-LOS-20"
+KERNEL_DEFCONFIG="vendor/bengal_defconfig"
 
 # Prebuilt Clang Toolchain (AOSP)
 CLANG_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/android12L-release/clang-r383902.tar.gz"
