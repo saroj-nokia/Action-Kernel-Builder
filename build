@@ -4,7 +4,7 @@ set -e -x
 
 # Kernel Source
 KERNEL_SOURCE="https://github.com/cd-Crypton/android_kernel_realme_sm6225.git"
-KERNEL_BRANCH="Merge-LOS-20"
+KERNEL_BRANCH="T-staging"
 KERNEL_DEFCONFIG="vendor/bengal-perf_defconfig"
 
 # Prebuilt Clang Toolchain (AOSP)
