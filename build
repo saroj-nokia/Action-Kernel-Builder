@@ -18,7 +18,7 @@ GCC_BRANCH="android12L-release"
 # Setup make Command
 make_fun() {
 	make O=out ARCH=arm64 \
-		CC=clang HOSTCC=clang LLVM=1 \
+		LLVM=1 \
 		CLANG_TRIPLE=aarch64-linux-gnu- \
 		CROSS_COMPILE=aarch64-linux-androidkernel- \
 		CROSS_COMPILE_ARM32=arm-linux-androidkernel- "$@"
