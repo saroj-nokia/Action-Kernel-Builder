@@ -19,8 +19,8 @@ GCC_BRANCH="android12L-release"
 make_fun() {
 	make O=out ARCH=arm64 \
 		CLANG_TRIPLE=aarch64-linux-gnu- \
-		CROSS_COMPILE=aarch64-linux-androidkernel- \
-		CROSS_COMPILE_COMPAT=arm-linux-androidkernel- "$@"
+		CROSS_COMPILE=aarch64-linux-android- \
+		CROSS_COMPILE_COMPAT=arm-linux-androideabi- "$@"
 }
 
 # Work Path
