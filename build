@@ -3,9 +3,9 @@
 set -e -x
 
 # Kernel Source
-KERNEL_SOURCE="https://github.com/carlodandan/android_kernel_realme_sm6225"
-KERNEL_BRANCH="staging-kernel"
-KERNEL_DEFCONFIG="vendor/bengal-perf_defconfig"
+KERNEL_SOURCE="https://github.com/carlodandan/android_kernel_realme_sm7125"
+KERNEL_BRANCH="A13"
+KERNEL_DEFCONFIG="vendor/atoll-perf_defconfig"
 
 # Prebuilt Clang Toolchain (AOSP)
 CLANG_URL="https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master-kernel-build-2021/clang-r416183b.tar.gz"
@@ -19,8 +19,7 @@ GCC_BRANCH="master-kernel-build-2021"
 make_fun() {
 	make O=out ARCH=arm64 CC=clang HOSTCC=clang \
 		CLANG_TRIPLE=aarch64-linux-gnu- \
-		CROSS_COMPILE=aarch64-linux-android- \
-		CROSS_COMPILE_ARM32=arm-linux-androideabi- "$@"
+		CROSS_COMPILE=aarch64-linux-androidkernel- "$@"
 }
 
 # Work Path
